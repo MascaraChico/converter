@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> bc170400635 | Weight Converter Calculator </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: bold;
+            background: #00d2ff;
+            background: linear-gradient(to right, #00d2ff, #928dab);
+        }
+        .owner {
+            color: whitesmoke;
+            font-size: 20px;
+            padding: 10px;
+            border: 1px solid black;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.85);
+            display: inline-block;
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+        }
+        .title {
+            display: block;
+            width: 100%;
+            text-align: center;
+            color: gold;
+        }
+        .title h1 {
+            font-family: 'Lucida Sans', sans-serif;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        form {
+           width: 500px;
+           padding: 20px; 
+           margin: 50px auto;
+        }
+        .flex {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .flex > li {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .flex > li > label {
+            flex: 1 0 100px;
+            max-width: 150px;
+            font-size: 16px;
+        }
+        .flex > li > label + * {
+            flex: 0.5 0 100px;
+        }
+        .flex > li {
+            margin-bottom: 20px;
+        }
+        .converter {
+            margin-left: -50px;
+        }
+        button {
+            margin-left: auto;
+            padding: 8px 16px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            outline: none;
+            transition: all 0.1s ease-in;
+        }
+        button:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+        .reset-btn {
+            margin-left: auto;
+            display: block;
+            background: #0404a5;
+        }
+        .convertBtn {
+            background: #128a12;
+        }
+        .note {
+            font-weight: bold;
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            background: #f33;
+            color: aliceblue;
+            text-align: center;
+        }
+        .flex > li > input {
+            padding: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="owner">
+        <table>
+            <tr>
+                <td>Made by Gulraiz Yasin with <span style="color:#f33">&hearts;</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="title">
+        <h1>Weight Converter</h1>
+        <p>Welcome to my Island!</p>
+    </div>
+    
+    <form id="form" onsubmit="return false">            
+        <ul class="flex">
+            <li class="converter">
+                    <label for="weight_kg">Weight in Kg:</label>
+                    <input type="text" id="weight_kg">
+                    <button class="convertBtn" onclick="convert()">Convert</button>
+            </li>
+
+            <li>
+                <label for="weight_g">Weight in Grams:</label>
+                <input type="text" id="weight_g" disabled value="">
+            </li>    
+        
+            <li>
+                <label for="weight_lbs">Pounds</label>
+                <input type="text" id="weight_lbs" disabled value="">
+            </li>    
+        
+            <li>
+                <label for="weight_mg">MilliGram</label>
+                <input type="text" id="weight_mg" disabled value="">
+            </li>   
+        
+            <li>
+                <label for="weight_tn">US Ton</label>
+                <input type="text" id="weight_tn" disabled value="">
+            </li>    
+    
+            <li>
+                <label for="weight_o">Ounces</label>
+                <input type="text" id="weight_o" disabled value="">
+            </li>
+            <button class="reset-btn" onclick="reset()">Reset Form</button>
+            <p class="note">You can press the Reset button for another conversion.</p>      
+        </ul>   
+    </form>
+
+<script>
+    
+    function convert() {
+
+        var input_wt = document.getElementById("weight_kg"),
+        wt_g = document.getElementById("weight_g"),
+        wt_lbs = document.getElementById("weight_lbs"),
+        wt_mg = document.getElementById("weight_mg"),
+        wt_tn = document.getElementById("weight_tn"),
+        wt_o = document.getElementById("weight_o");
+
+        if(isNaN(input_wt.value) || input_wt <= 0 ){
+            window.alert("Enter Value greater than 0");
+        } else {
+            wt_g.value = input_wt.value * 1000;
+            wt_lbs.value = input_wt.value * 2.2046;
+            wt_mg.value = input_wt.value * 1000000;
+            wt_tn.value = input_wt.value * 0.0011023;
+            wt_o.value = input_wt.value * 35.274;
+        } 
+        
+
+    }
+
+    function reset() {
+        var wt_form = document.getElementById("form");
+        wt_form.reset();
+    }
+
+</script>
+</body>
+</html>
